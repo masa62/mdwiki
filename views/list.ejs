@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+<style type="text/css">
+body {
+    width: 100%;
+}
+.container {
+    width:70%;
+}
+
+.number-row {
+    width:24px;
+}
+.icons-row {
+    width: 24px;
+}
+</style>
+</head>
+<body>
+    <div class="container">
+        <h1><%= title %></h1>
+        <h3>file lists</h3>
+        <%
+        var files = [],
+            dirs = []
+            elms = [];
+        for (var i = 0; i < list.length; i ++) {
+           if(list[i][1]) {
+              files.push(['icon-file', '/md/' + tree + list[i][0], list[i][0]]);
+           } else {
+              dirs.push(['icon-folder-close', '/md/' + tree + list[i][0], list[i][0]]);
+           } 
+        }
+        elms = dirs.concat(files);
+       %>
+        <table class="table">
+            <tr><td class="number-row">#</td><td class="icons-row"></td><td>filename</td></tr>
+            <% for (var i = 0; i < elms.length; i ++) { %>
+            <tr><td><%= i + 1 %></td><td><i class="<%= elms[i][0] %>"></i></td><td><a href="<%= elms[i][1] %>"><%= elms[i][2] %></a></td></tr>
+            <% } %>
+        </table>
+    </div>
+</body>
+</html>
